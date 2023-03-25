@@ -1,10 +1,10 @@
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { blueMarkerIcon } from 'src/markers/blueMarker/blueMarkerIcon';
+import { greenMarkerIcon } from 'src/markers/greenMarker/greenMarkerIcon';
+import { redMarkerIcon } from 'src/markers/redMarker/redMarker';
+import { yellowMarkerIcon } from 'src/markers/yellowMarker/yellowMarkerIcon';
 import './App.css';
-import { blueMarkerIcon } from './markers/blueMarker/blueMarkerIcon';
-import { greenMarkerIcon } from './markers/greenMarker/greenMarkerIcon';
-import { redMarkerIcon } from './markers/redMarker/redMarker';
-import { yellowMarkerIcon } from './markers/yellowMarker/yellowMarkerIcon';
 // react-leaflet-markercluster
 
 function App() {
