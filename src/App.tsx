@@ -7,7 +7,7 @@ function App() {
   return (
     <MapContainer
       style={{ height: '100vh' }}
-      center={[51.505, -0.09]}
+      center={[35.71493059086737, 139.79664456805762]}
       zoom={13}
       scrollWheelZoom={false}
     >
@@ -15,9 +15,9 @@ function App() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]} icon={iconPerson}>
+      <Marker position={[35.71493059086737, 139.79664456805762]} icon={iconPerson}>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          Senso-ji <br /> Asakusa
         </Popup>
       </Marker>
     </MapContainer>
