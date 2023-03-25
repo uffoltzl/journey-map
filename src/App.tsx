@@ -1,4 +1,5 @@
 import 'leaflet/dist/leaflet.css';
+import { useRef } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { blueMarkerIcon } from 'src/markers/blueMarker/blueMarkerIcon';
 import { greenMarkerIcon } from 'src/markers/greenMarker/greenMarkerIcon';
@@ -8,12 +9,28 @@ import './App.css';
 // react-leaflet-markercluster
 
 function App() {
+  const mapRef: React.MutableRefObject<L.Map | null> = useRef(null);
+  const markerRef: React.MutableRefObject<L.Marker | null> = useRef(null);
+
+  const onClickShowMarker = () => {
+    const map = mapRef.current;
+    if (!map) {
+      return;
+    }
+
+    const marker = markerRef.current;
+    if (marker) {
+      map.flyTo(marker.getLatLng(), 13);
+      marker.openPopup();
+    }
+  };
   return (
     <MapContainer
       style={{ height: '100vh' }}
       center={[35.71493059086737, 139.79664456805762]}
       zoom={13}
       scrollWheelZoom={false}
+      ref={mapRef}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors <div> Icons made by <a href="https://www.flaticon.com/authors/alfanz" title="alfanz"> alfanz </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>'
@@ -21,10 +38,15 @@ function App() {
       />
       <Marker position={[35.71493059086737, 139.79664456805762]} icon={redMarkerIcon}>
         <Popup>
-          Senso-ji <br /> Asakusa
+          Senso-ji <br /> Asakusa <br />
+          <button onClick={onClickShowMarker}>Next</button>
         </Popup>
       </Marker>
-      <Marker position={[35.70555154283942, 139.77636316713426]} icon={blueMarkerIcon}>
+      <Marker
+        ref={markerRef}
+        position={[35.70555154283942, 139.77636316713426]}
+        icon={blueMarkerIcon}
+      >
         <Popup>
           Senso-ji <br /> Asakusa
         </Popup>
