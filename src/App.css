@@ -4,7 +4,6 @@
 
 button {
   appearance: none;
-  background-color: #2ea44f;
   border: 1px solid rgba(27, 31, 35, .15);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
@@ -42,13 +41,28 @@ button:focus {
 }
 
 button:disabled {
-  background-color: #94d3a2;
   border-color: rgba(27, 31, 35, .1);
   color: rgba(255, 255, 255, .8);
   cursor: default;
 }
 
-button:active {
-  background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+.red-button {
+  background-color: #ff3d58;
+}
+
+.red-button:hover {
+  background-color: #ff1a38;
+}
+
+.red-button:focus {
+  box-shadow: rgba(255, 0, 34, .4) 0 0 0 3px;
+}
+
+.red-button:disabled {
+  background-color: #ff667a;
+}
+
+.red-button:active {
+  background-color: #ff334e;
+  box-shadow: rgba(128, 0, 17, .2) 0 1px 0 inset;
 }

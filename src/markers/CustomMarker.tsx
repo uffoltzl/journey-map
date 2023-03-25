@@ -38,7 +38,9 @@ export const CustomMarker: FunctionComponent<Props> = ({
         {markerPayload.content}
         <br />
         {nextMarkerRef ? (
-          <button onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}>Next</button>
+          <button className="red-button" onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}>
+            Next
+          </button>
         ) : null}
       </Popup>
     </Marker>
