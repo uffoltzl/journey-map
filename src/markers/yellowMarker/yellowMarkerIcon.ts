@@ -4,3 +4,5 @@ export const yellowMarkerIcon = new L.Icon({
   iconUrl: require('./yellowMarkerIcon.png'),
   iconSize: new L.Point(50, 50),
 });
+
+export const yellowColor = '#ffc107';
