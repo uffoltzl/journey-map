@@ -1,29 +1,23 @@
 import 'leaflet/dist/leaflet.css';
-import { useRef } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import { blueMarkerIcon } from 'src/markers/blueMarker/blueMarkerIcon';
-import { greenMarkerIcon } from 'src/markers/greenMarker/greenMarkerIcon';
-import { redMarkerIcon } from 'src/markers/redMarker/redMarker';
-import { yellowMarkerIcon } from 'src/markers/yellowMarker/yellowMarkerIcon';
+import { createRef, useEffect, useRef, useState } from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import { CustomMarker } from 'src/markers/CustomMarker';
+import { markerData } from 'src/models/marker.data';
 import './App.css';
 // react-leaflet-markercluster
 
 function App() {
   const mapRef: React.MutableRefObject<L.Map | null> = useRef(null);
-  const markerRef: React.MutableRefObject<L.Marker | null> = useRef(null);
+  const [markerRefs, setMarkerRefs] = useState<Array<React.MutableRefObject<L.Marker | null>>>([]);
 
-  const onClickShowMarker = () => {
-    const map = mapRef.current;
-    if (!map) {
-      return;
-    }
+  useEffect(() => {
+    setMarkerRefs((elRefs) =>
+      Array(markerData.length)
+        .fill(null)
+        .map((_, i) => elRefs[i] || createRef())
+    );
+  }, [markerData.length]);
 
-    const marker = markerRef.current;
-    if (marker) {
-      map.flyTo(marker.getLatLng(), 13);
-      marker.openPopup();
-    }
-  };
   return (
     <MapContainer
       style={{ height: '100vh' }}
@@ -36,31 +30,15 @@ function App() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors <div> Icons made by <a href="https://www.flaticon.com/authors/alfanz" title="alfanz"> alfanz </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[35.71493059086737, 139.79664456805762]} icon={redMarkerIcon}>
-        <Popup>
-          Senso-ji <br /> Asakusa <br />
-          <button onClick={onClickShowMarker}>Next</button>
-        </Popup>
-      </Marker>
-      <Marker
-        ref={markerRef}
-        position={[35.70555154283942, 139.77636316713426]}
-        icon={blueMarkerIcon}
-      >
-        <Popup>
-          Senso-ji <br /> Asakusa
-        </Popup>
-      </Marker>
-      <Marker position={[35.704840823595475, 139.78792776035098]} icon={greenMarkerIcon}>
-        <Popup>
-          Senso-ji <br /> Asakusa
-        </Popup>
-      </Marker>
-      <Marker position={[35.716647820160496, 139.77672542938322]} icon={yellowMarkerIcon}>
-        <Popup>
-          Senso-ji <br /> Asakusa
-        </Popup>
-      </Marker>
+      {markerData.map((marker, index) => (
+        <CustomMarker
+          key={index}
+          markerPayload={marker}
+          mapRef={mapRef}
+          currentMarkerRef={markerRefs[index]}
+          nextMarkerRef={markerRefs.length - 1 > index ? markerRefs[index + 1] : null}
+        />
+      ))}
     </MapContainer>
   );
 }
