@@ -4,10 +4,12 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import { Details } from 'src/details/Details';
 import { CustomMarker } from 'src/markers/CustomMarker';
 import { markerData } from 'src/models/marker.data';
+import { MarkerPayload } from 'src/models/marker.type';
 import './App.css';
 // react-leaflet-markercluster
 
 function App() {
+  const [selectedDetails, setSelectedDetails] = useState<MarkerPayload | null>(null);
   const mapRef: React.MutableRefObject<L.Map | null> = useRef(null);
   const [markerRefs, setMarkerRefs] = useState<Array<React.MutableRefObject<L.Marker | null>>>([]);
 
@@ -21,8 +23,10 @@ function App() {
 
   return (
     <div style={{ display: 'block', flexDirection: 'row' }}>
-      <Details {...markerData[0]} />
-      <div style={{ width: '75%', marginLeft: 'auto' }}>
+      {selectedDetails ? (
+        <Details markerPayload={selectedDetails} closeDetails={() => setSelectedDetails(null)} />
+      ) : null}
+      <div style={{ width: selectedDetails ? '75%' : '100%', marginLeft: 'auto' }}>
         <MapContainer
           style={{ height: '100vh' }}
           center={[35.71493059086737, 139.79664456805762]}
@@ -41,6 +45,7 @@ function App() {
               mapRef={mapRef}
               currentMarkerRef={markerRefs[index]}
               nextMarkerRef={markerRefs.length - 1 > index ? markerRefs[index + 1] : null}
+              openDetails={() => setSelectedDetails(marker)}
             />
           ))}
         </MapContainer>

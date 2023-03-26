@@ -24,6 +24,7 @@ interface Props {
   mapRef: React.MutableRefObject<L.Map | null>;
   currentMarkerRef: React.MutableRefObject<L.Marker | null>;
   nextMarkerRef: React.MutableRefObject<L.Marker | null> | null;
+  openDetails: () => void;
 }
 
 export const CustomMarker: FunctionComponent<Props> = ({
@@ -31,6 +32,7 @@ export const CustomMarker: FunctionComponent<Props> = ({
   mapRef,
   currentMarkerRef,
   nextMarkerRef,
+  openDetails,
 }) => {
   return (
     <Marker
@@ -54,14 +56,24 @@ export const CustomMarker: FunctionComponent<Props> = ({
           {markerPayload.content}
         </p>
         {nextMarkerRef ? (
-          <p>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+            }}
+          >
             <button
               className={getMarkerClassName(markerPayload.type)}
               onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}
             >
               Suivant
             </button>
-          </p>
+            <button className={getMarkerClassName(markerPayload.type)} onClick={openDetails}>
+              Plus
+            </button>
+          </div>
         ) : null}
       </Popup>
     </Marker>
