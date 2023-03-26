@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Marker, Popup } from 'react-leaflet';
+import { Spacer } from 'src/components/Spacer';
 import { getMarkerClassName, getMarkerIcon } from 'src/markers/getMarkerType';
 import { MarkerPayload } from 'src/models/marker.type';
 
@@ -40,14 +41,16 @@ export const CustomMarker: FunctionComponent<Props> = ({
     >
       <Popup>
         {markerPayload.content}
-        <br />
         {nextMarkerRef ? (
-          <button
-            className={getMarkerClassName(markerPayload.type)}
-            onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}
-          >
-            Next
-          </button>
+          <>
+            <Spacer height={2} />
+            <button
+              className={getMarkerClassName(markerPayload.type)}
+              onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}
+            >
+              Next
+            </button>
+          </>
         ) : null}
       </Popup>
     </Marker>
