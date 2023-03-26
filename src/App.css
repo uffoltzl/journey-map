@@ -59,10 +59,73 @@ button:disabled {
 }
 
 .red-button:disabled {
-  background-color: #ff667a;
+  background-color: #ff99a7;
 }
 
 .red-button:active {
   background-color: #ff334e;
   box-shadow: rgba(128, 0, 17, .2) 0 1px 0 inset;
+}
+
+.yellow-button {
+  background-color: #ffc107;
+}
+
+.yellow-button:hover {
+  background-color: #ffbf00;
+}
+
+.yellow-button:focus {
+  box-shadow: rgba(255, 191, 0, .4) 0 0 0 3px;
+}
+
+.yellow-button:disabled {
+  background-color: #ffdf80;
+}
+
+.yellow-button:active {
+  background-color: #ffc107;
+  box-shadow: rgba(179, 134, 0, .2) 0 1px 0 inset;
+}
+
+.blue-button {
+  background-color: #8bc4ff;
+}
+
+.blue-button:hover {
+  background-color: #66b0ff;
+}
+
+.blue-button:focus {
+  box-shadow: rgba(77, 163, 255, .4) 0 0 0 3px;
+}
+
+.blue-button:disabled {
+  background-color: #cce5ff;
+}
+
+.blue-button:active {
+  background-color: #66b0ff;
+  box-shadow: rgba(0, 62, 128, .2) 0 1px 0 inset;
+}
+
+.green-button {
+  background-color: #5cfaa9;
+}
+
+.green-button:hover {
+  background-color: #39f996;
+}
+
+.green-button:focus {
+  box-shadow: rgba(6, 249, 123, .4) 0 0 0 3px;
+}
+
+.green-button:disabled {
+  background-color: #b5fdd8;
+}
+
+.green-button:active {
+  background-color: #39f996;
+  box-shadow: rgba(4, 149, 74, .2) 0 1px 0 inset;
 }

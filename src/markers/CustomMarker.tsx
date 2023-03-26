@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Marker, Popup } from 'react-leaflet';
-import { redMarkerIcon } from 'src/markers/redMarker/redMarker';
+import { getMarkerClassName, getMarkerIcon } from 'src/markers/getMarkerType';
 import { MarkerPayload } from 'src/models/marker.type';
 
 const onClickShowMarker = (
@@ -33,12 +33,19 @@ export const CustomMarker: FunctionComponent<Props> = ({
   nextMarkerRef,
 }) => {
   return (
-    <Marker ref={currentMarkerRef} position={markerPayload.position} icon={redMarkerIcon}>
+    <Marker
+      ref={currentMarkerRef}
+      position={markerPayload.position}
+      icon={getMarkerIcon(markerPayload.type)}
+    >
       <Popup>
         {markerPayload.content}
         <br />
         {nextMarkerRef ? (
-          <button className="red-button" onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}>
+          <button
+            className={getMarkerClassName(markerPayload.type)}
+            onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}
+          >
             Next
           </button>
         ) : null}
