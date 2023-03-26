@@ -10,6 +10,7 @@ import './App.css';
 
 function App() {
   const [selectedDetails, setSelectedDetails] = useState<MarkerPayload | null>(null);
+  const [isDetailsOpened, setIsDetailsOpened] = useState<boolean>(false);
   const mapRef: React.MutableRefObject<L.Map | null> = useRef(null);
   const [markerRefs, setMarkerRefs] = useState<Array<React.MutableRefObject<L.Marker | null>>>([]);
 
@@ -21,12 +22,24 @@ function App() {
     );
   }, [markerData.length]);
 
+  useEffect(() => {
+    if (!isDetailsOpened) {
+      setTimeout(() => setSelectedDetails(null), 2000);
+    }
+  }, [isDetailsOpened]);
+
   return (
     <div style={{ display: 'block', flexDirection: 'row' }}>
       {selectedDetails ? (
-        <Details markerPayload={selectedDetails} closeDetails={() => setSelectedDetails(null)} />
+        <Details markerPayload={selectedDetails} closeDetails={() => setIsDetailsOpened(false)} />
       ) : null}
-      <div style={{ width: selectedDetails ? '75%' : '100%', marginLeft: 'auto' }}>
+      <div
+        style={{
+          width: isDetailsOpened ? '75%' : '100%',
+          marginLeft: 'auto',
+          transition: 'width 2s',
+        }}
+      >
         <MapContainer
           style={{ height: '100vh' }}
           center={[35.71493059086737, 139.79664456805762]}
@@ -45,7 +58,10 @@ function App() {
               mapRef={mapRef}
               currentMarkerRef={markerRefs[index]}
               nextMarkerRef={markerRefs.length - 1 > index ? markerRefs[index + 1] : null}
-              openDetails={() => setSelectedDetails(marker)}
+              openDetails={() => {
+                setSelectedDetails(marker);
+                setIsDetailsOpened(true);
+              }}
             />
           ))}
         </MapContainer>
