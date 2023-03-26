@@ -40,11 +40,21 @@ export const CustomMarker: FunctionComponent<Props> = ({
     >
       <Popup>
         {markerPayload.location ? (
-          <p style={{ textAlign: 'center' }}>{markerPayload.location}</p>
+          <p style={{ fontWeight: 'bold' }}>{markerPayload.location}</p>
         ) : null}
-        <p style={{ textAlign: 'center' }}>{markerPayload.content}</p>
+        <p
+          style={{
+            display: '-webkit-box',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+          }}
+        >
+          {markerPayload.content}
+        </p>
         {nextMarkerRef ? (
-          <p style={{ textAlign: 'center' }}>
+          <p>
             <button
               className={getMarkerClassName(markerPayload.type)}
               onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}
