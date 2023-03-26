@@ -49,7 +49,7 @@ export const CustomMarker: FunctionComponent<Props> = ({
               className={getMarkerClassName(markerPayload.type)}
               onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}
             >
-              Next
+              Suivant
             </button>
           </p>
         ) : null}
