@@ -2,6 +2,7 @@ import { MarkerPayload, MarkerType } from 'src/models/marker.type';
 
 export const markerData: MarkerPayload[] = [
   {
+    location: 'Senso-ji, Asakusa',
     content: 'Content 1',
     position: [35.71493059086737, 139.79664456805762],
     type: MarkerType.ACCOMMODATION,

@@ -8,6 +8,7 @@ export enum MarkerType {
 }
 
 export interface MarkerPayload {
+  location?: string;
   content: string;
   position: LatLngExpression;
   type: MarkerType;
