@@ -23,9 +23,7 @@ function App() {
 
   return (
     <div style={{ display: 'block', flexDirection: 'row' }}>
-      {selectedDetails ? (
-        <Details markerPayload={selectedDetails} closeDetails={() => setSelectedDetails(null)} />
-      ) : null}
+      <Details markerPayload={selectedDetails} closeDetails={() => setSelectedDetails(null)} />
       <div>
         <MapContainer
           style={{ height: '100vh' }}

@@ -2,27 +2,31 @@ import { FunctionComponent } from 'react';
 import { getMarkerClassName } from 'src/markers/getMarkerType';
 import { MarkerPayload } from 'src/models/marker.type';
 import './Details.css';
+import { Dialog } from '@headlessui/react';
+import { MarkerType } from 'src/models/marker.type';
 
 interface Props {
-  markerPayload: MarkerPayload;
+  markerPayload: MarkerPayload | null;
   closeDetails: () => void;
 }
 
 export const Details: FunctionComponent<Props> = ({ markerPayload, closeDetails }) => {
+  const isOpen = markerPayload !== null;
   return (
-    <div className="wrapper">
-      <div className="drawer">
-        {markerPayload.location ? (
-          <p style={{ fontWeight: 'bold' }}>{markerPayload.location}</p>
-        ) : null}
-        <p>{markerPayload.content}</p>
+    <Dialog className="wrapper" open={isOpen} onClose={closeDetails}>
+      <Dialog.Panel className="drawer">
+        {markerPayload?.location ? <Dialog.Title>{markerPayload.location}</Dialog.Title> : null}
+        <p>{markerPayload?.content}</p>
         <p>
-          <button className={getMarkerClassName(markerPayload.type)} onClick={closeDetails}>
+          <button
+            className={getMarkerClassName(markerPayload?.type ?? MarkerType.RESTAURANT)}
+            onClick={closeDetails}
+          >
             Fermer les details
           </button>
         </p>
-      </div>
+      </Dialog.Panel>
       <div className="backdrop" onClick={closeDetails} />
-    </div>
+    </Dialog>
   );
 };
