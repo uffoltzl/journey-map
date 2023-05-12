@@ -4,6 +4,7 @@ import { MarkerPayload } from 'src/models/marker.type';
 import './Details.css';
 import { Dialog } from '@headlessui/react';
 import { MarkerType } from 'src/models/marker.type';
+import parse from 'html-react-parser';
 
 interface Props {
   markerPayload: MarkerPayload | null;
@@ -16,7 +17,7 @@ export const Details: FunctionComponent<Props> = ({ markerPayload, closeDetails 
     <Dialog className="wrapper" open={isOpen} onClose={closeDetails}>
       <Dialog.Panel className="drawer">
         {markerPayload?.location ? <Dialog.Title>{markerPayload.location}</Dialog.Title> : null}
-        <p>{markerPayload?.content}</p>
+        <p>{parse(markerPayload?.content ?? '')}</p>
         <p>
           <button
             className={getMarkerClassName(markerPayload?.type ?? MarkerType.RESTAURANT)}

@@ -3,6 +3,7 @@ import { Marker, Popup } from 'react-leaflet';
 import { Spacer } from 'src/components/Spacer';
 import { getMarkerClassName, getMarkerIcon } from 'src/markers/getMarkerType';
 import { MarkerPayload } from 'src/models/marker.type';
+import parse from 'html-react-parser';
 
 const onClickShowMarker = (
   mapRef: React.MutableRefObject<L.Map | null>,
@@ -54,7 +55,7 @@ export const CustomMarker: FunctionComponent<Props> = ({
             WebkitBoxOrient: 'vertical',
           }}
         >
-          {markerPayload.content}
+          {parse(markerPayload.content)}
         </p>
         <div
           style={{
