@@ -55,26 +55,26 @@ export const CustomMarker: FunctionComponent<Props> = ({
         >
           {markerPayload.content}
         </p>
-        {nextMarkerRef ? (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-evenly',
-            }}
-          >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+          }}
+        >
+          {nextMarkerRef ? (
             <button
               className={getMarkerClassName(markerPayload.type)}
               onClick={() => onClickShowMarker(mapRef, nextMarkerRef)}
             >
               Suivant
             </button>
-            <button className={getMarkerClassName(markerPayload.type)} onClick={openDetails}>
-              Plus
-            </button>
-          </div>
-        ) : null}
+          ) : null}
+          <button className={getMarkerClassName(markerPayload.type)} onClick={openDetails}>
+            Plus
+          </button>
+        </div>
       </Popup>
     </Marker>
   );
