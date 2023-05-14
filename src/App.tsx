@@ -7,6 +7,7 @@ import { markerData } from 'src/models/marker.data';
 import { MarkerPayload } from 'src/models/marker.type';
 import './App.css';
 // react-leaflet-markercluster
+// https://github.com/xiaolin/react-image-gallery
 
 function App() {
   const [selectedDetails, setSelectedDetails] = useState<MarkerPayload | null>(null);
