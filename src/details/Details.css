@@ -1,41 +1,36 @@
-@keyframes slideIn {
-    from {
-      transform: translateX(100%);
-    }
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
 }
-@keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
+
+.drawer-transition {
+  height: 100%;
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  max-width: 500px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #FFFBF1;
+  padding: 32px;
+}
+
+.drawer-title {
+  font-size: 1.5em;
+  font-weight: bold;
 }
   
-  .wrapper {
-    position: fixed;
-    inset: 0;
-    padding: 16px;
-    z-index: 10000;
-  }
-  
-  .backdrop {
-    position: absolute;
-    inset: 0;
-    background: transparent;
-    backdrop-filter: blur(3px);
-    animation: fadeIn 850ms cubic-bezier(.14,.78,.36,1);
-  }
-  .drawer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 50%;
-    max-width: 500px;
-    min-width: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: #FFFBF1;
-    padding: 32px;
-    animation: slideIn 500ms cubic-bezier(.14,.78,.36,1);
-    z-index: inherit;
-  }
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  backdrop-filter: blur(3px);
+}
