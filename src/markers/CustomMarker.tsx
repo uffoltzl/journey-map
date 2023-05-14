@@ -43,9 +43,7 @@ export const CustomMarker: FunctionComponent<Props> = ({
       icon={getMarkerIcon(markerPayload.type)}
     >
       <Popup>
-        {markerPayload.location ? (
-          <p style={{ fontWeight: 'bold' }}>{markerPayload.location}</p>
-        ) : null}
+        <p style={{ fontWeight: 'bold' }}>{markerPayload.title}</p>
         <p
           style={{
             display: '-webkit-box',

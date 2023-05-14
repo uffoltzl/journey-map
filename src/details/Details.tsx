@@ -48,9 +48,7 @@ export const Details: FunctionComponent<Props> = ({ markerPayload, closeDetails 
           leaveTo="translate-x-full"
         >
           <Dialog.Panel className="drawer">
-            {markerPayload?.location ? (
-              <Dialog.Title className="drawer-title">{markerPayload.location}</Dialog.Title>
-            ) : null}
+            <Dialog.Title className="drawer-title">{markerPayload?.title}</Dialog.Title>
             <p>{parse(markerPayload?.content ?? '')}</p>
             <p>
               <button
